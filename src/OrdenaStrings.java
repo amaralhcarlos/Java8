@@ -10,47 +10,12 @@ public class OrdenaStrings {
 
         palavras.add("Alura Online");
         palavras.add("Casa do Código");
+        palavras.add("Origamid");
         palavras.add("Caelum");
 
-        //Forma antiga -> Java 7
-        //Collections.sort(palavras, new ComparadorPorTamanho());
+        palavras.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
 
-        //Forma nova -> Java 8+
-        //Método sort na interface List é um DEFAULT METHOD
-        palavras.sort(new ComparadorPorTamanho());
+        palavras.forEach(palavra -> System.out.println(palavra));
 
-        //Forma Antiga
-        /*for (String p : palavras) {
-            System.out.println(p);
-        }*/
-
-        //Usando a interface Consumer
-        palavras.forEach(new ImprimeNaLinha());
-
-    }
-}
-
-class ComparadorPorTamanho implements Comparator<String> {
-
-    @Override
-    public int compare(String s1, String s2) {
-
-        if (s1.length() < s2.length()) {
-            return -1;
-        }
-
-        if (s1.length() > s2.length()) {
-            return 1;
-        }
-
-        return 0;
-    }
-}
-
-class ImprimeNaLinha implements Consumer<String>{
-
-    @Override
-    public void accept(String s) {
-        System.out.println(s);
     }
 }
