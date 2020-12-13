@@ -13,9 +13,9 @@ public class OrdenaStrings {
         palavras.add("Origamid");
         palavras.add("Caelum");
 
-        palavras.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
+        palavras.sort(Comparator.comparingInt(String::length));
 
-        palavras.forEach(palavra -> System.out.println(palavra));
+        palavras.forEach(System.out::println);
 
     }
 }
