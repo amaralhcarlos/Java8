@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 class Curso {
@@ -63,6 +61,28 @@ public class ExemploCursos {
                         .mapToInt(Curso::getAlunos)
                         .sum()
         );
+
+        System.out.println("*-----------------------------------------*");
+        System.out.println("Qualquer curso com mais de 100 alunos: ");
+        cursos.stream()
+                .filter(c -> c.getAlunos() >= 100)
+                .findAny()
+                .ifPresent(c -> System.out.println(c.getNome()));
+
+        List<Curso> resultadoPosFiltro = cursos.stream().filter(c -> c.getAlunos() <= 50).collect(Collectors.toList());
+
+
+        System.out.println("*-----------------------------------------*");
+        System.out.println("Cursos com igual ou menos de 50 alunos: ");
+
+        cursos.stream()
+                .filter(c -> c.getAlunos() <= 50)
+                .collect(Collectors.toMap(
+                        c -> c.getNome(),
+                        c -> c.getAlunos()
+                ))
+                .forEach((nome, alunos) -> System.out.println(String.format("Curso de %s tem %s alunos", nome, alunos)));
+
 
     }
 
